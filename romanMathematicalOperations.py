@@ -18,7 +18,7 @@ def checkForRegMatch(roman):
    if re.match(RegExpressionForRomanMatch, roman, re.IGNORECASE)==None:
 	   raise InvalidRomanNumberError('Please enter the roman number according to the rules')
 	   
-def inputValidationForRoman(operator,*inputs):
+def inputValidation(operator,*inputs):
     '''Validates the input roman and operation inputs based on the below defined regex '''
     patternForRomanVlaues = '^(\((I|V|X|L|C|D|M)+\))*((I|V|X|L|C|D|M)+)*$'
     patternForOperator = '^[\*\-\+\/]$'
@@ -76,12 +76,12 @@ def romanToDecimalConverter(inputString):
     return finalDecimalValue
 
     
-def arthemeticOperationsForRomanNumbers(input1,operation,input2):
-    '''Main methode which performs mathamatical operations based on the input '''
-    inputValidationForRoman(operation,input1,input2)
+def arthemeticOperationsForRomanNumbers(input1,operator,input2):
+    '''Main methode which performs mathamatical operations based on the two roman input and the operator '''
+    inputValidation(operator,input1,input2)
     decimal_input1 = checkRangeInRomanValues(input1)
     decimal_input2 = checkRangeInRomanValues(input2)
-    temp = checkRangeForDecimalValue(eval(decimal_input1+operation+decimal_input2))
+    temp = checkRangeForDecimalValue(eval(decimal_input1+operator+decimal_input2))
     if temp == '':
         raise InvalidOperationOutputError('Result of operation is either is 0 or negative') 
     return temp
